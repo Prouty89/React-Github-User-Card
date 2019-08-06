@@ -1,7 +1,11 @@
 import React from "react";
 
- function Card(props) {
-  return <div>Users Card</div>;
-}
+ const UserCard = props => {
+  return (
+    <div className="usercard-container">
+      <h1>User Information</h1>
+    </div>
+  );
+};
 
- export default Card;
+ export default UserCard;
