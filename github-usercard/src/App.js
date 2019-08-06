@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import CardGrid from './Components/CardGrid'
 
-function App() {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hubUser: [],
+    };
+  }
+
+componentDidMount() {
+  this.hubUser();
+};
+
+fetchUser = () => {
+  axios
+    .get("https://api.github.com/users/prouty89")
+    .then(res => {
+      this.setState({ hubUser: res.message})
+    })
+    .catch(err => {
+      console.log("error", err)
+    })
+}
+
+
+render () {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Hello
+      <CardGrid hubUser={this.state.hubUser} />
     </div>
-  );
+    );
+  }
 }
 
 export default App;
